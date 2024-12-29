@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 class LayoutLeftOptionsBuilder implements Builder<Region>{
 
@@ -24,21 +25,15 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
     // option layaouts
     private HashMap<String, Region> nav;
 
-    private final String[] sideBarOptions = {
-        "Home",
-        "Password generator",
-        "Exit"
-        // more options...
-    };
+    // button properties
+    private final HashMap<String, EventHandler<ActionEvent>> btnProperties = new HashMap<>(){{
 
-    // sidebar option actions
-    private final ArrayList<EventHandler<ActionEvent>> actions = new ArrayList<>(Arrays.asList(
-        evt -> mainLayoutRef.setCenter(nav.get("home")),
-        evt -> System.out.println("Adios mundo !!!"),
-        evt -> sceneSwapper.run()
-    ));
+        put("Home", evt -> mainLayoutRef.setCenter(nav.get("home")));
+        put("Passwod generator", evt -> System.out.println("Adios mundo !!!"));
+        put("Exit", evt -> sceneSwapper.run());
 
-    // sidebar buttons lenght rely on sideBarOptions lenght
+    }};
+
     private ArrayList<Button> btns;
 
     public LayoutLeftOptionsBuilder(Runnable sceneSwapper, HashMap<String, Region> nav, BorderPane mainLayoutRef) {
@@ -76,11 +71,11 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
         btns = new ArrayList<>();
         
         Button btn;
-        for(int i = 0; i < sideBarOptions.length; i++) {
+        for(Map.Entry<String, EventHandler<ActionEvent>> entry: btnProperties.entrySet()) {
 
-            btn = new Button(sideBarOptions[i]);
+            btn = new Button(entry.getKey());
             btn.setPrefWidth(130);
-            btn.setOnAction(actions.get(i));
+            btn.setOnAction(entry.getValue());
 
             btns.add(btn);
         }
