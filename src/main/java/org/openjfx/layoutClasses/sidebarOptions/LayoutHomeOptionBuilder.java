@@ -7,11 +7,11 @@ import javafx.scene.control.Label;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
-public class LayoutHomeOption implements Builder<Region> {
+public class LayoutHomeOptionBuilder implements Builder<Region> {
 
     Label text;
 
-    public LayoutHomeOption() {
+    public LayoutHomeOptionBuilder() {
 
         initializeComponents();
 

@@ -1,6 +1,6 @@
 package org.openjfx.layoutclasses;
 
-import org.openjfx.layoutclasses.sidebaroptions.LayoutHomeOption;
+import org.openjfx.layoutclasses.sidebaroptions.LayoutHomeOptionBuilder;
 
 import javafx.util.Builder;
 import javafx.scene.layout.Region;
@@ -10,15 +10,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MainLayoutBuilder implements Builder<Region> {
 
     private Region loginComponent;
     private Region sideBarComponent;
 
-    private final HashMap<String, Region> nav = new HashMap<>(){{
-        put("home", new LayoutHomeOption().build());
+    private final LinkedHashMap<String, Region> nav = new LinkedHashMap<>(){{
+        put("home", new LayoutHomeOptionBuilder().build());
     }};
 
     @Override

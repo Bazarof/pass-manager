@@ -12,13 +12,13 @@ import javafx.scene.control.TextField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.text.*;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class LayoutLoginBuilder implements Builder<Region>{
 
     private Runnable sceneSwapper;
 
-    private HashMap<String, Region> nav;
+    private LinkedHashMap<String, Region> nav;
 
     private Text sceneTitle;
 
@@ -29,7 +29,7 @@ public class LayoutLoginBuilder implements Builder<Region>{
     private PasswordField passwordField;
     private Button btnLogin;
 
-    public LayoutLoginBuilder(Runnable sceneSwapper, HashMap<String, Region> nav){
+    public LayoutLoginBuilder(Runnable sceneSwapper, LinkedHashMap<String, Region> nav){
 
         this.sceneSwapper = sceneSwapper;
         this.nav = nav;

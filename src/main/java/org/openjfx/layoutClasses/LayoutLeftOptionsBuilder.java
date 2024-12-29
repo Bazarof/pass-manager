@@ -1,7 +1,5 @@
 package org.openjfx.layoutclasses;
 
-import org.openjfx.layoutclasses.sidebaroptions.LayoutHomeOption;
-
 import java.lang.Runnable;
 import javafx.util.Builder;
 import javafx.scene.layout.Region;
@@ -13,7 +11,7 @@ import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap; // can get items in the order were put
 import java.util.Map;
 
 class LayoutLeftOptionsBuilder implements Builder<Region>{
@@ -23,10 +21,10 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
     private BorderPane mainLayoutRef;
 
     // option layaouts
-    private HashMap<String, Region> nav;
+    private LinkedHashMap<String, Region> nav;
 
     // button properties
-    private final HashMap<String, EventHandler<ActionEvent>> btnProperties = new HashMap<>(){{
+    private final LinkedHashMap<String, EventHandler<ActionEvent>> btnProperties = new LinkedHashMap<>(){{
 
         put("Home", evt -> mainLayoutRef.setCenter(nav.get("home")));
         put("Passwod generator", evt -> System.out.println("Adios mundo !!!"));
@@ -36,7 +34,7 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
 
     private ArrayList<Button> btns;
 
-    public LayoutLeftOptionsBuilder(Runnable sceneSwapper, HashMap<String, Region> nav, BorderPane mainLayoutRef) {
+    public LayoutLeftOptionsBuilder(Runnable sceneSwapper, LinkedHashMap<String, Region> nav, BorderPane mainLayoutRef) {
 
         this.sceneSwapper = sceneSwapper;
         this.nav = nav;
@@ -52,7 +50,7 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
         sideBar.setPadding(new Insets(10, 10, 10 ,10));
         sideBar.setStyle("-fx-background-color: #265586");
 
-        for(int i = 0; i < sideBarOptions.length; i++){
+        for(int i = 0; i < btnProperties.size(); i++){
             sideBar.getChildren().add(btns.get(i));
         }
 
