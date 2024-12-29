@@ -1,10 +1,10 @@
-package org.openfx.layoutclasses;
+package org.openjfx.layoutclasses;
 
 import java.lang.Runnable;
 import javafx.util.Builder;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -12,10 +12,15 @@ import javafx.scene.control.TextField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.text.*;
+import java.util.HashMap;
 
 public class LayoutLoginBuilder implements Builder<Region>{
 
-    private final Runnable sceneSwapper;
+    private Runnable sceneSwapper;
+
+    private BorderPane mainLayoutRef;
+
+    private HashMap<String, Region> nav;
 
     private Text sceneTitle;
 
@@ -26,9 +31,11 @@ public class LayoutLoginBuilder implements Builder<Region>{
     private PasswordField passwordField;
     private Button btnLogin;
 
-    public LayoutLoginBuilder(Runnable sceneSwapper) {
+    public LayoutLoginBuilder(Runnable sceneSwapper, HashMap<String, Region> nav, BorderPane mainLayoutRef) {
 
         this.sceneSwapper = sceneSwapper;
+        this.nav = nav;
+        this.mainLayoutRef = mainLayoutRef;
         initializeComponents();
 
     }

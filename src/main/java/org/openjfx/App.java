@@ -1,6 +1,6 @@
 package org.openjfx;
 
-import org.openfx.layoutclasses.MainLayoutBuilder;
+import org.openjfx.layoutclasses.MainLayoutBuilder;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,8 +20,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         stage.setScene(new Scene(new MainLayoutBuilder().build()));
-        stage.setWidth(800);
-        stage.setHeight(600);
+        stage.setWidth(700);
+        stage.setHeight(500);
         stage.show();
     }
 
