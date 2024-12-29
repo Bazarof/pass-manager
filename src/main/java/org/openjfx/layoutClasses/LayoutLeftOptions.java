@@ -7,6 +7,7 @@ import javafx.util.Builder;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.BorderPane;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -52,7 +53,8 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
     @Override
     public Region build() {
 
-        VBox sideBar = new VBox();
+        VBox sideBar = new VBox(10);
+        sideBar.setPadding(new Insets(10, 10, 10 ,10));
         sideBar.setStyle("-fx-background-color: #265586");
 
         for(int i = 0; i < sideBarOptions.length; i++){
@@ -77,7 +79,7 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
         for(int i = 0; i < sideBarOptions.length; i++) {
 
             btn = new Button(sideBarOptions[i]);
-            btn.setPrefWidth(180);
+            btn.setPrefWidth(130);
             btn.setOnAction(actions.get(i));
 
             btns.add(btn);

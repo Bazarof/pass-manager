@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-//import javafx.stage.StageStyle;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 
@@ -20,6 +19,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         stage.setScene(new Scene(new MainLayoutBuilder().build()));
+
+        stage.setMinWidth(500);
+        stage.setMinHeight(350);
+
         stage.setWidth(700);
         stage.setHeight(500);
         stage.show();
