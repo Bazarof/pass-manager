@@ -30,7 +30,7 @@ public class MainLayoutBuilder implements Builder<Region> {
         loginComponent = new LayoutLoginBuilder(() -> {
             mainLayout.setCenter(nav.get("home"));
             mainLayout.setLeft(sideBarComponent);
-        }, nav, mainLayout).build();
+        }, nav).build();
 
         sideBarComponent = new LayoutLeftOptionsBuilder(() -> {
             mainLayout.setCenter(loginComponent);

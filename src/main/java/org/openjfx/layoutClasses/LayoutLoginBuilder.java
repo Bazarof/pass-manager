@@ -18,8 +18,6 @@ public class LayoutLoginBuilder implements Builder<Region>{
 
     private Runnable sceneSwapper;
 
-    private BorderPane mainLayoutRef;
-
     private HashMap<String, Region> nav;
 
     private Text sceneTitle;
@@ -31,11 +29,10 @@ public class LayoutLoginBuilder implements Builder<Region>{
     private PasswordField passwordField;
     private Button btnLogin;
 
-    public LayoutLoginBuilder(Runnable sceneSwapper, HashMap<String, Region> nav, BorderPane mainLayoutRef) {
+    public LayoutLoginBuilder(Runnable sceneSwapper, HashMap<String, Region> nav){
 
         this.sceneSwapper = sceneSwapper;
         this.nav = nav;
-        this.mainLayoutRef = mainLayoutRef;
         initializeComponents();
 
     }
