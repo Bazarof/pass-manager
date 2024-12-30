@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -62,6 +63,7 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
 
         HBox sideBarBottom = new HBox(5){{
             setPadding(new Insets(5, 5, 5, 5));
+            setAlignment(Pos.CENTER_RIGHT);
             setStyle("-fx-background-color: #29446f; -fx-border-width: 2px 0px 0px 0px; -fx-border-color: white;");
             getChildren().add(btnLogOut);
         }};
