@@ -4,7 +4,10 @@ import java.lang.Runnable;
 import javafx.util.Builder;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.event.EventHandler;
@@ -28,15 +31,19 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
 
         put("Home", evt -> mainLayoutRef.setCenter(nav.get("home")));
         put("Passwod generator", evt -> System.out.println("Adios mundo !!!"));
-        put("Exit", evt -> sceneSwapper.run());
 
     }};
+
+    private final Button btnLogOut;
 
     private ArrayList<Button> btns;
 
     public LayoutLeftOptionsBuilder(Runnable sceneSwapper, LinkedHashMap<String, Region> nav, BorderPane mainLayoutRef) {
 
-        this.sceneSwapper = sceneSwapper;
+        this.btnLogOut = new Button("Signout"){{
+            setOnAction(evt -> sceneSwapper.run());
+        }};
+
         this.nav = nav;
         this.mainLayoutRef = mainLayoutRef;
         initializeComponents();
@@ -46,15 +53,27 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
     @Override
     public Region build() {
 
-        VBox sideBar = new VBox(10);
-        sideBar.setPadding(new Insets(10, 10, 10 ,10));
-        sideBar.setStyle("-fx-background-color: #265586");
+        BorderPane bp = new BorderPane();
+
+        VBox sideBar = new VBox(10){{
+            setPadding(new Insets(10, 10, 10 ,10));
+            setStyle("-fx-background-color: #29446f");
+        }};
+
+        HBox sideBarBottom = new HBox(5){{
+            setPadding(new Insets(5, 5, 5, 5));
+            setStyle("-fx-background-color: #29446f; -fx-border-width: 2px 0px 0px 0px; -fx-border-color: white;");
+            getChildren().add(btnLogOut);
+        }};
 
         for(int i = 0; i < btnProperties.size(); i++){
             sideBar.getChildren().add(btns.get(i));
         }
 
-        return sideBar;
+        bp.setCenter(sideBar);
+        bp.setBottom(sideBarBottom);
+
+        return bp;
     }
 
     private void initializeComponents() {
