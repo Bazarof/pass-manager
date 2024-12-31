@@ -95,6 +95,7 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
             btn = new Button(entry.getKey());
             btn.setPrefWidth(130);
             btn.setOnAction(entry.getValue());
+            btn.getStyleClass().add("sidebar-btn");
 
             btns.add(btn);
         }

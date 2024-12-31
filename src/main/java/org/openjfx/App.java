@@ -18,18 +18,23 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setScene(new Scene(new MainLayoutBuilder().build()));
 
+        stage.setScene(new Scene(new MainLayoutBuilder().build()){{
+            getStylesheets().add("style/styles.css");
+        }});
         stage.setMinWidth(500);
         stage.setMinHeight(350);
 
         stage.setWidth(700);
         stage.setHeight(500);
         stage.show();
+
     }
 
     public static void main(String[] args) {
+
         launch();
+
     }
 
 }
