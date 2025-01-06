@@ -1,7 +1,11 @@
 package org.openjfx.layoutclasses;
 
+import org.openjfx.layoutclasses.sidebaroptions.LayoutHomeOptionBuilder;
+
 import java.lang.Runnable;
 import javafx.util.Builder;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
@@ -18,19 +22,19 @@ import java.util.Arrays;
 import java.util.LinkedHashMap; // can get items in the order were put
 import java.util.Map;
 
-class LayoutLeftOptionsBuilder implements Builder<Region>{
+class LayoutMainPaneBuilder implements Builder<Region>{
 
-    private Runnable sceneSwapper;
-
-    private BorderPane mainLayoutRef;
+    private BorderPane mainPane;
 
     // option layaouts
-    private LinkedHashMap<String, Region> nav;
+    private final LinkedHashMap<String, Region> nav = new LinkedHashMap<>(){{
+        put("home", new LayoutHomeOptionBuilder().build());
+    }};
 
     // button properties
     private final LinkedHashMap<String, EventHandler<ActionEvent>> btnProperties = new LinkedHashMap<>(){{
 
-        put("Home", evt -> mainLayoutRef.setCenter(nav.get("home")));
+        put("Home", evt -> mainPane.setCenter(nav.get("home")));
         put("Passwod generator", evt -> System.out.println("Adios mundo !!!"));
 
     }};
@@ -39,14 +43,29 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
 
     private ArrayList<Button> btns;
 
-    public LayoutLeftOptionsBuilder(Runnable sceneSwapper, LinkedHashMap<String, Region> nav, BorderPane mainLayoutRef) {
+    public LayoutMainPaneBuilder(Stage primaryStage) {
+
+        this.mainPane = new BorderPane();
 
         this.btnLogOut = new Button("Signout"){{
-            setOnAction(evt -> sceneSwapper.run());
+            setOnAction(evt -> {
+
+                Stage newPrimaryStage = new Stage();
+
+                newPrimaryStage.setScene(new Scene(new LayoutLoginBuilder(newPrimaryStage).build()){{
+                    getStylesheets().add("style/styles.css");
+                }});
+
+                newPrimaryStage.setWidth(350);
+                newPrimaryStage.setHeight(500);
+
+                primaryStage.close();
+
+                newPrimaryStage.show();
+
+            });
         }};
 
-        this.nav = nav;
-        this.mainLayoutRef = mainLayoutRef;
         initializeComponents();
 
     }
@@ -54,7 +73,7 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
     @Override
     public Region build() {
 
-        BorderPane bp = new BorderPane();
+        BorderPane sideBarBP = new BorderPane();
 
         VBox sideBar = new VBox(10){{
             setPadding(new Insets(10, 10, 10 ,10));
@@ -72,10 +91,13 @@ class LayoutLeftOptionsBuilder implements Builder<Region>{
             sideBar.getChildren().add(btns.get(i));
         }
 
-        bp.setCenter(sideBar);
-        bp.setBottom(sideBarBottom);
+        sideBarBP.setCenter(sideBar);
+        sideBarBP.setBottom(sideBarBottom);
 
-        return bp;
+        mainPane.setLeft(sideBarBP);
+        mainPane.setCenter(nav.get("home"));
+
+        return mainPane;
     }
 
     private void initializeComponents() {

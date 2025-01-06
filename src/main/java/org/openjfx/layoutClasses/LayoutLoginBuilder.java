@@ -2,6 +2,8 @@ package org.openjfx.layoutclasses;
 
 import java.lang.Runnable;
 import javafx.util.Builder;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
@@ -16,9 +18,7 @@ import java.util.LinkedHashMap;
 
 public class LayoutLoginBuilder implements Builder<Region>{
 
-    private Runnable sceneSwapper;
-
-    private LinkedHashMap<String, Region> nav;
+    private Stage primaryStage;
 
     private Text sceneTitle;
 
@@ -29,12 +29,9 @@ public class LayoutLoginBuilder implements Builder<Region>{
     private PasswordField passwordField;
     private Button btnLogin;
 
-    public LayoutLoginBuilder(Runnable sceneSwapper, LinkedHashMap<String, Region> nav){
-
-        this.sceneSwapper = sceneSwapper;
-        this.nav = nav;
+    public LayoutLoginBuilder(Stage primaryStage){
+        this.primaryStage = primaryStage;
         initializeComponents();
-
     }
 
     // Adds the controls to the GridPane
@@ -107,7 +104,22 @@ public class LayoutLoginBuilder implements Builder<Region>{
 
         btnLogin = new Button("Login");
         btnLogin.setFont(btnFont);
-        btnLogin.setOnAction(evt -> sceneSwapper.run());
+        btnLogin.setOnAction(evt -> {
+
+            // AUTHENTICATE USER
+
+            Stage newPrimaryStage = new Stage();
+            newPrimaryStage.setScene(new Scene(new LayoutMainPaneBuilder(newPrimaryStage).build()){{
+                getStylesheets().add("style/styles.css");
+            }});
+
+            newPrimaryStage.setWidth(600);
+            newPrimaryStage.setHeight(400);
+
+            primaryStage.close();
+
+            newPrimaryStage.show();
+        });
 
     }
 }
