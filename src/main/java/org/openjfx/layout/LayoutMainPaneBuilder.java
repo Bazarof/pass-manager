@@ -1,6 +1,7 @@
-package org.openjfx.layoutclasses;
+package org.openjfx.layout;
 
-import org.openjfx.layoutclasses.sidebaroptions.LayoutHomeOptionBuilder;
+import org.openjfx.layout.sidebaroptions.LayoutHomeOptionBuilder;
+import org.openjfx.classes.utilities.Stages;
 
 import java.lang.Runnable;
 import javafx.util.Builder;
@@ -22,7 +23,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap; // can get items in the order were put
 import java.util.Map;
 
-class LayoutMainPaneBuilder implements Builder<Region>{
+public class LayoutMainPaneBuilder implements Builder<Region>{
 
     private BorderPane mainPane;
 
@@ -43,25 +44,15 @@ class LayoutMainPaneBuilder implements Builder<Region>{
 
     private ArrayList<Button> btns;
 
-    public LayoutMainPaneBuilder(Stage primaryStage) {
+    public LayoutMainPaneBuilder(Stage currentStage) {
 
         this.mainPane = new BorderPane();
 
         this.btnLogOut = new Button("Signout"){{
             setOnAction(evt -> {
 
-                Stage newPrimaryStage = new Stage();
-
-                newPrimaryStage.setScene(new Scene(new LayoutLoginBuilder(newPrimaryStage).build()){{
-                    getStylesheets().add("style/styles.css");
-                }});
-
-                newPrimaryStage.setWidth(350);
-                newPrimaryStage.setHeight(500);
-
-                primaryStage.close();
-
-                newPrimaryStage.show();
+                Stages.closeCurrentStage(currentStage);
+                Stages.openLoginStage();
 
             });
         }};
@@ -83,6 +74,7 @@ class LayoutMainPaneBuilder implements Builder<Region>{
         HBox sideBarBottom = new HBox(5){{
             setPadding(new Insets(5, 5, 5, 5));
             setAlignment(Pos.CENTER_RIGHT);
+            getStyleClass.add("sidebar-bottom");
             setStyle("-fx-background-color: #29446f; -fx-border-width: 2px 0px 0px 0px; -fx-border-color: white;");
             getChildren().add(btnLogOut);
         }};

@@ -1,4 +1,4 @@
-package org.openjfx.layoutclasses.sidebaroptions;
+package org.openjfx.layout.sidebaroptions;
 
 import javafx.util.Builder;
 import javafx.scene.layout.Region;

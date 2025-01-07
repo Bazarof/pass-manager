@@ -1,7 +1,6 @@
 package org.openjfx;
 
-//import org.openjfx.layoutclasses.MainLayoutBuilder;
-import org.openjfx.layoutclasses.LayoutLoginBuilder;
+import org.openjfx.classes.utilities.Stages;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -21,33 +20,20 @@ public class App extends Application {
     public void start(Stage stage) {
 
         if(isUserLogged()){
-            // show main panel
+
+            Stages.setMainPaneStage(stage);
 
         }else{
 
-            setLoginStage(stage);
+            Stages.setLoginStage(stage);
 
         }
-
-
-        stage.show();
 
     }
 
     public static void main(String[] args) {
 
         launch();
-
-    }
-
-    private void setLoginStage(Stage stage){
-
-            stage.setScene(new Scene(new LayoutLoginBuilder(stage).build()){{
-                getStylesheets().add("style/styles.css");
-            }});
-
-            stage.setWidth(350);
-            stage.setHeight(500);
 
     }
 

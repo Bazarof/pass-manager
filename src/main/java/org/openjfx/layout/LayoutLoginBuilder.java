@@ -1,4 +1,6 @@
-package org.openjfx.layoutclasses;
+package org.openjfx.layout;
+
+import org.openjfx.classes.utilities.Stages;
 
 import java.lang.Runnable;
 import javafx.util.Builder;
@@ -18,8 +20,6 @@ import java.util.LinkedHashMap;
 
 public class LayoutLoginBuilder implements Builder<Region>{
 
-    private Stage primaryStage;
-
     private Text sceneTitle;
 
     // controls
@@ -29,8 +29,8 @@ public class LayoutLoginBuilder implements Builder<Region>{
     private PasswordField passwordField;
     private Button btnLogin;
 
-    public LayoutLoginBuilder(Stage primaryStage){
-        this.primaryStage = primaryStage;
+    public LayoutLoginBuilder(Stage currentStage){
+        buttonLogin(currentStage);
         initializeComponents();
     }
 
@@ -64,7 +64,6 @@ public class LayoutLoginBuilder implements Builder<Region>{
         title();
         labels();
         fields();
-        buttonLogin();
     }
 
     private void title() {
@@ -98,7 +97,7 @@ public class LayoutLoginBuilder implements Builder<Region>{
 
     }
 
-    private void buttonLogin() {
+    private void buttonLogin(Stage currentStage) {
 
         Font btnFont = Font.font("Tahoma", FontWeight.NORMAL, 16);
 
@@ -108,17 +107,8 @@ public class LayoutLoginBuilder implements Builder<Region>{
 
             // AUTHENTICATE USER
 
-            Stage newPrimaryStage = new Stage();
-            newPrimaryStage.setScene(new Scene(new LayoutMainPaneBuilder(newPrimaryStage).build()){{
-                getStylesheets().add("style/styles.css");
-            }});
-
-            newPrimaryStage.setWidth(600);
-            newPrimaryStage.setHeight(400);
-
-            primaryStage.close();
-
-            newPrimaryStage.show();
+            Stages.closeCurrentStage(currentStage);
+            Stages.openMainPaneStage();
         });
 
     }
