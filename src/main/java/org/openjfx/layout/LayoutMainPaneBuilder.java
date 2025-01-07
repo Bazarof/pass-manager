@@ -74,8 +74,7 @@ public class LayoutMainPaneBuilder implements Builder<Region>{
         HBox sideBarBottom = new HBox(5){{
             setPadding(new Insets(5, 5, 5, 5));
             setAlignment(Pos.CENTER_RIGHT);
-            getStyleClass.add("sidebar-bottom");
-            setStyle("-fx-background-color: #29446f; -fx-border-width: 2px 0px 0px 0px; -fx-border-color: white;");
+            getStyleClass().add("sidebar-bottom");
             getChildren().add(btnLogOut);
         }};
 
