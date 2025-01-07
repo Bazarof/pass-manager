@@ -9,6 +9,12 @@
     -fx-background-insets: 0;         /* Sin cambios en los insets */
 }
 
+.sidebar-bottom {
+    -fx-background-color: #29446f;
+    -fx-border-width: 2px 0px 0px 0px;
+    -fx-border-color: white;
+}
+
 .sidebar-btn:focused{
     -fx-background-color: -secondary-theme-color;  /* Mantener el color de fondo original */
     -fx-background-insets: 0;         /* Sin cambios en los insets */
