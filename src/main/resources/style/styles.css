@@ -3,7 +3,7 @@
     -secondary-theme-color: #fff;
 }
 
-.sidebar-btn {
+.sidebar-btn, .button-signout {
     -fx-background-color: -secondary-theme-color;
     -fx-background-radius: 5;         /* Mantener el radio de fondo original */
     -fx-background-insets: 0;         /* Sin cambios en los insets */
@@ -15,12 +15,6 @@
     -fx-border-color: white;
 }
 
-.sidebar-btn:focused{
-    -fx-background-color: -secondary-theme-color;  /* Mantener el color de fondo original */
-    -fx-background-insets: 0;         /* Sin cambios en los insets */
-    -fx-background-radius: 5;         /* Mantener el radio de fondo original */
-}
-
-.sidebar-btn:hover{
+.sidebar-btn:hover, .button-signout:hover{
     -fx-cursor: hand;
 }

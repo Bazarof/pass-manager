@@ -49,6 +49,9 @@ public class LayoutMainPaneBuilder implements Builder<Region>{
         this.mainPane = new BorderPane();
 
         this.btnLogOut = new Button("Signout"){{
+
+            getStyleClass().add("button-signout");
+
             setOnAction(evt -> {
 
                 Stages.closeCurrentStage(currentStage);
