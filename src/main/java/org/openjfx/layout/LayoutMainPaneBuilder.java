@@ -1,6 +1,7 @@
 package org.openjfx.layout;
 
 import org.openjfx.layout.sidebaroptions.LayoutHomeOptionBuilder;
+import org.openjfx.layout.sidebaroptions.LayoutPasswordGeneratorBuilder;
 import org.openjfx.classes.utilities.Stages;
 
 import java.lang.Runnable;
@@ -27,16 +28,17 @@ public class LayoutMainPaneBuilder implements Builder<Region>{
 
     private BorderPane mainPane;
 
-    // option layaouts
+    // route layaouts
     private final LinkedHashMap<String, Region> nav = new LinkedHashMap<>(){{
         put("home", new LayoutHomeOptionBuilder().build());
+        put("password-generator", new LayoutPasswordGeneratorBuilder().build());
     }};
 
     // button properties
     private final LinkedHashMap<String, EventHandler<ActionEvent>> btnProperties = new LinkedHashMap<>(){{
 
         put("Home", evt -> mainPane.setCenter(nav.get("home")));
-        put("Passwod generator", evt -> System.out.println("Adios mundo !!!"));
+        put("Passwod generator", evt -> mainPane.setCenter(nav.get("password-generator")));
 
     }};
 
