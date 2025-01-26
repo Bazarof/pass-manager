@@ -3,6 +3,8 @@
     -secondary-theme-color: #fff;
 }
 
+
+/* Main Layout Builder */
 .sidebar-btn, .button-signout {
     -fx-background-color: -secondary-theme-color;
     -fx-background-radius: 5;         /* Mantener el radio de fondo original */
@@ -17,4 +19,11 @@
 
 .sidebar-btn:hover, .button-signout:hover{
     -fx-cursor: hand;
+}
+
+/* Password Generator Builder */
+.password-message-box {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 5;
+    -fx-padding: 5;
 }

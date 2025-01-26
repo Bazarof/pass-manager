@@ -15,7 +15,7 @@ public class Stages {
         }});
 
         newStage.setWidth(350);
-        newStage.setHeight(500);
+        newStage.setHeight(600);
 
         newStage.show();
     }
@@ -29,7 +29,7 @@ public class Stages {
         }});
 
         newStage.setWidth(350);
-        newStage.setHeight(500);
+        newStage.setHeight(600);
 
         newStage.show();
     }
